@@ -70,3 +70,5 @@ e0a208,::1,POST,http://localhost:8888/trioticketingsystem/public/en/member/theme
 132899,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587333272,,200
 949186,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587333274,,200
 37a8fd,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/dashboard,1587333285,,200
+230939,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/dashboard,1587333340,,200
+f3064d,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587333343,,200
