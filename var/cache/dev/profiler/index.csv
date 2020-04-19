@@ -72,3 +72,9 @@ e0a208,::1,POST,http://localhost:8888/trioticketingsystem/public/en/member/theme
 37a8fd,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/dashboard,1587333285,,200
 230939,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/dashboard,1587333340,,200
 f3064d,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587333343,,200
+da3b71,::1,GET,http://localhost:8888/trioticketingsystem/public/en/folder,1587333606,,302
+a22bf7,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587333607,,200
+a548a5,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member,1587333626,c65c07,200
+c65c07,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member,1587333626,,404
+5a5913,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/login,1587333631,,302
+c7c8ea,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/dashboard,1587333641,,200
