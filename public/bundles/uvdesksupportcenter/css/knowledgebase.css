@@ -267,6 +267,7 @@ a:active {
   background-color: transparent!important;
   border-color: #00b3fe!important;
   color: #00b3fe!important;
+  color:red;
 }
 .uv-btn:active,
 .uv-btn-small:active,
