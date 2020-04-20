@@ -115,3 +115,7 @@ b43ef1,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/create
 02a011,::1,POST,http://localhost:8888/trioticketingsystem/public/en/member/agent/4,1587333922,,302
 da0b5f,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/agents,1587333923,,200
 97fe9f,::1,GET,http://localhost:8888/trioticketingsystem/public/en/member/agents/xhr,1587333924,,200
+adfdc3,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587395015,,200
+8d685a,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587395145,,200
+5c0949,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587395361,,200
+2191ab,::1,GET,http://localhost:8888/trioticketingsystem/public/en/,1587395469,,200
