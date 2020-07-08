@@ -225,15 +225,16 @@
             <section>
                 <div class="uv-ticket-view">
                     <div class="uv-ticket-head">
-                        <h1>
+						  		<h1>
                             {{ ticket.subject }}
                             <span class="uv-pull-rightside uv-print-icon" onclick="window.print()"></span>
                         </h1>
+
                         <div class="uv-ticket-strip">
                             <span>
                                 <span class="uv-ticket-strip-label">{{ 'Created'|trans }} -</span>
                                 <span class="timeago" data-timestamp="{{ localizedCreateAtTime }}" title="{{ localizedCreateAtTime }}">
-                                    {{ localizedCreateAtTime }} 
+                                    {{ localizedCreateAtTime }}
                                 </span>
                             </span>
                             <span>
@@ -495,7 +496,7 @@
 
         var ticketApp = {};
         $(function () {
-            
+
             var TicketModel = Backbone.Model.extend({
                 idAttribute : "id",
                 validation: {

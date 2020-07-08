@@ -26,7 +26,7 @@ class Ticket extends Controller
 
         if (!empty($website)) {
             $knowledgebaseWebsite = $entityManager->getRepository(KnowledgebaseWebsite::class)->findOneBy(['website' => $website->getId(), 'status' => 1]);
-            
+
             if (!empty($knowledgebaseWebsite) && true == $knowledgebaseWebsite->getIsActive()) {
                 return true;
             }
@@ -47,7 +47,7 @@ class Ticket extends Controller
     public function ticketadd(Request $request)
     {
         $this->isWebsiteActive();
-        
+
         $formErrors = $errors = array();
         $em = $this->getDoctrine()->getManager();
         $website = $em->getRepository(Website::class)->findOneByCode('knowledgebase');
@@ -64,7 +64,7 @@ class Ticket extends Controller
                 $error = false;
                 $message = '';
                 $ticketType = $em->getRepository('UVDeskCoreFrameworkBundle:TicketType')->find($request->request->get('type'));
-                
+
                 if($request->files->get('customFields') && !$this->get('file.service')->validateAttachmentsSize($request->files->get('customFields'))) {
                     $error = true;
                     $this->addFlash(
@@ -77,9 +77,9 @@ class Ticket extends Controller
 
                 $ticket = new TicketEntity();
                 $loggedUser = $this->get('security.token_storage')->getToken()->getUser();
-                
+
                 if(!empty($loggedUser) && $loggedUser != 'anon.') {
-                    
+
                     $form = $this->createForm(TicketForm::class, $ticket, [
                         'container' => $this->container,
                         'entity_manager' => $em,
@@ -112,6 +112,10 @@ class Ticket extends Controller
                     $data = array(
                         'from' => $email, //email$request->getSession()->getFlashBag()->set('success', $this->get('translator')->trans('Success ! Ticket has been created successfully.'));
                         'subject' => $request->request->get('subject'),
+								'summary' => $request->request->get('summary'),
+								'stepsToReproduce' => $request->request->get('stepsToReproduce'),
+								'expectedResults' => $request->request->get('expectedResults'),
+								'actualResults' => $request->request->get('actualResults'),
                         // @TODO: We need to filter js (XSS) instead of html
                         'reply' => strip_tags($request->request->get('reply')),
                         'firstName' => $name[0],
@@ -145,6 +149,10 @@ class Ticket extends Controller
                     }
                     $data['user'] = $data['customer'];
                     $data['subject'] = $request->request->get('subject');
+						  $data['summary'] = $request->request->get('summary');
+						  $data['stepsToReproduce'] = $request->request->get('stepsToReproduce');
+						  $data['expectedResults'] = $request->request->get('expectedResults');
+						  $data['actualResults'] = $request->request->get('actualResults');
                     $data['source'] = 'website';
                     $data['threadType'] = 'create';
                     $data['message'] = htmlentities($data['reply']);
@@ -159,7 +167,7 @@ class Ticket extends Controller
                     }
 
                     $thread = $this->get('ticket.service')->createTicketBase($data);
-                    
+
                     if ($thread) {
                         $request->getSession()->getFlashBag()->set('success', $this->get('translator')->trans('Success ! Ticket has been created successfully.'));
                     } else {
@@ -221,9 +229,9 @@ class Ticket extends Controller
         if(!$currentUser || $currentUser == "anon.") {
             //throw error
         }
-        
+
         $tickets = $ticketRepo->getAllCustomerTickets($currentUser);
-        
+
         return $this->render('@UVDeskSupportCenter/Knowledgebase/ticketList.html.twig', array(
             'ticketList' => $tickets,
         ));
@@ -308,7 +316,7 @@ class Ticket extends Controller
         $json = array();
         if($request->isXmlHttpRequest()) {
             $repository = $this->getDoctrine()->getRepository('UVDeskCoreFrameworkBundle:Ticket');
-    
+
             $json = $repository->getAllCustomerTickets($request->query, $this->container);
         }
 
@@ -348,7 +356,7 @@ class Ticket extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $user = $this->get('user.service')->getSessionUser();
         $ticket = $entityManager->getRepository(TicketEntity::class)->findOneBy(['id' => $id]);
-        
+
         if (empty($ticket)) {
             throw new NotFoundHttpException('Page Not Found!');
         }
@@ -359,7 +367,7 @@ class Ticket extends Controller
             $entityManager->persist($ticket);
             $entityManager->flush();
         }
-        
+
         $twigResponse = [
             'ticket' => $ticket,
             'searchDisable' => true,
@@ -378,7 +386,7 @@ class Ticket extends Controller
         $data = json_decode($request->getContent(), true);
         $id = $data['id'];
         $count = intval($data['rating']);
-        
+
         if($count > 0 || $count < 6) {
             $ticket = $em->getRepository('UVDeskCoreFrameworkBundle:Ticket')->find($id);
             $customer = $this->get('user.service')->getCurrentUser();
@@ -425,7 +433,7 @@ class Ticket extends Controller
         $zip->open($zipname, \ZipArchive::CREATE);
         if(count($attachment)){
             foreach ($attachment as $attach) {
-                $zip->addFile(substr($attach->getPath(), 1)); 
+                $zip->addFile(substr($attach->getPath(), 1));
             }
         }
         $zip->close();
@@ -454,22 +462,22 @@ class Ticket extends Controller
 
         $response = new Response();
         $response->setStatusCode(200);
-        
+
         $response->headers->set('Content-type', $attachment->getContentType());
         $response->headers->set('Content-Disposition', 'attachment; filename='. $attachment->getName());
         $response->sendHeaders();
         $response->setContent(readfile($path));
-        
+
         return $response;
     }
-    
+
     public function ticketCollaboratorXhr(Request $request)
     {
         $json = array();
         $content = json_decode($request->getContent(), true);
         $em = $this->getDoctrine()->getManager();
         $ticket = $em->getRepository('UVDeskCoreFrameworkBundle:Ticket')->find($content['ticketId']);
-        
+
         if ($request->getMethod() == "POST") {
             if ($content['email'] == $ticket->getCustomer()->getEmail()) {
                 $json['alertClass'] = 'danger';
@@ -484,16 +492,16 @@ class Ticket extends Controller
 
                 $supportRole = $em->getRepository('UVDeskCoreFrameworkBundle:SupportRole')->findOneByCode('ROLE_CUSTOMER');
                 $collaborator = $this->get('user.service')->createUserInstance($data['from'], $data['firstName'], $supportRole, $extras = ["active" => true]);
-                
+
                 $checkTicket = $em->getRepository('UVDeskCoreFrameworkBundle:Ticket')->isTicketCollaborator($ticket,$content['email']);
-                
+
                 if (!$checkTicket) {
                     $ticket->addCollaborator($collaborator);
                     $em->persist($ticket);
                     $em->flush();
                     $ticket->lastCollaborator = $collaborator;
                     $collaborator = $em->getRepository('UVDeskCoreFrameworkBundle:User')->find($collaborator->getId());
-                   
+
 
                     $json['collaborator'] =  $this->get('user.service')->getCustomerPartialDetailById($collaborator->getId());
                     $json['alertClass'] = 'success';
@@ -505,7 +513,7 @@ class Ticket extends Controller
             }
         } elseif ($request->getMethod() == "DELETE") {
             $collaborator = $em->getRepository('UVDeskCoreFrameworkBundle:User')->findOneBy(array('id' => $request->attributes->get('id')));
-            
+
             if ($collaborator) {
                 $ticket->removeCollaborator($collaborator);
                 $em->persist($ticket);

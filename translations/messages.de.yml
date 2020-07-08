@@ -549,9 +549,13 @@
 "Support": "Unterstützung"
 "Choose ticket type": "Ticketart wählen"
 "Ticket subject": "Ticket Betreff"
-"Message": "Botschaft"
+"Message": "Nachricht"
+"Summary": "Zusammenfassung"
+"Steps To Reproduce": "Schritte zum Reproduzieren"
+"Expected Results": "Erwartete Ergebnisse"
+"Actual Results": "Aktuelle Ergebnisse"
 "Query Message": "Nachricht abfragen"
-"Add Attachment": "Anhang hinzufügen"
+"Add Screenshot": "Screenshot hinzufügen"
 "This field is mandatory": "Das Feld ist obligatorisch"
 "General": "Allgemeines"
 "Designation": "Bezeichnung"
@@ -1352,22 +1356,3 @@
 "Please upload valid Image file (Only JPEG, JPG, PNG allowed)!!": "ECommerce Order Syncronization"
 'comma "," separated': 'Komma getrennt'
 "Provide a valid url(with protocol)": "Importieren Sie E-Commerce-Bestelldetails von verschiedenen verfügbaren Plattformen in Ihre Support-Tickets."
-
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

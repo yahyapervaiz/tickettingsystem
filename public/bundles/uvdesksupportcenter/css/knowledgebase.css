@@ -8,7 +8,7 @@
 }
 html,
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif!important;
   font-weight: 400;
   color: #333333;
   margin: 0px;
@@ -209,7 +209,7 @@ a:active {
   font-size: 13px;
   padding: 6px 10px;
   color: #FFFFFF;
-  background-color: #00b3fe!important;
+  background-color: #007AA3;
   display: inline-block;
   text-transform: uppercase;
   border-radius: 0;
@@ -226,7 +226,7 @@ a:active {
   font-size: 15px;
   padding: 10px 10px;
   color: #FFFFFF;
-  background-color: #00b3fe!important;
+  background-color: #007AA3;
   display: inline-block;
   text-transform: uppercase;
   border-radius: 0;
@@ -243,7 +243,7 @@ a:active {
   font-size: 17px;
   padding: 12px 10px;
   color: #FFFFFF;
-  background-color: #00b3fe!important;
+  background-color: #007AA3!important;
   display: inline-block;
   text-transform: uppercase;
   border-radius: 0;
@@ -265,8 +265,8 @@ a:active {
 
   border-radius: 10px;
   background-color: transparent!important;
-  border-color: #00b3fe!important;
-  color: #00b3fe!important;
+  border-color: #007AA3!important;
+  color: #007AA3!important;
 }
 .uv-btn:active,
 .uv-btn-small:active,
@@ -1690,7 +1690,7 @@ p {
   width: 300px;
   margin: 15px;
   border: solid 1px #D3D3D3;
-  border-bottom: solid 3px #7C70F4;
+  border-bottom: solid 5px #007AA3;
   border-radius: 3px;
   display: inline-block;
   vertical-align: top;
@@ -2102,7 +2102,7 @@ p {
 }
 .uv-paper-article .uv-paper-section .uv-folder-title:after {
   font-size: 13px;
-  background-color: #7C70F4;
+  background-color: #007AA3!important;
   color: #FFFFFF;
   padding: 2px 5px;
   border-radius: 3px;
@@ -3355,4 +3355,12 @@ p {
   .uv-rtl .uv-kudo .uv-kudo-button .uv-kudo-icon {
     margin: 0px;
   }
+}
+
+.uv-cta-wrapper .uv-cta-lt svg path {
+  fill: #007AA3!important;
+}
+
+.uv-field-info {
+	display: none;
 }

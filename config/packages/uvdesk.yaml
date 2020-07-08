@@ -1,5 +1,6 @@
+
 parameters:
-    app_locales: en|fr|it
+    app_locales: en|fr|it|de|
     
     # Default Assets
     assets_default_agent_profile_image_path: 'bundles/uvdeskcoreframework/images/uv-avatar-batman.png'
@@ -8,7 +9,7 @@ parameters:
 
     uvdesk_site_path.member_prefix: member
     uvdesk_site_path.knowledgebase_customer_prefix: customer
-
+    
     # File uploads constraints
     # @TODO: Set these parameters via compilers
     max_post_size: 8388608
@@ -16,11 +17,14 @@ parameters:
     upload_max_filesize: 2097152
 
 uvdesk:
-    site_url: 'localhost:8000'
+    site_url: 'localhost:8888'
     upload_manager:
         id: Webkul\UVDesk\CoreFrameworkBundle\FileSystem\UploadManagers\Localhost
     
-    support_email: ~
+    support_email:
+        id: trioticketingsystem@gmail.com
+        name: UVDesk Community
+        mailer_id: mailer_6053
     
     # Default resources
     default:

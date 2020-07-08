@@ -43,11 +43,38 @@ class Ticket
      */
     private $subject;
 
+
+	 /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $summary;
+
+	 /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $stepsToReproduce;
+
+	 /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $expectedResults;
+
+	 /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $actualResults;
+
+
+
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    private $referenceIds;
+   	private $referenceIds;
 
     /**
      * @var boolean
@@ -277,6 +304,7 @@ class Ticket
         return $this;
     }
 
+
     /**
      * Get subject
      *
@@ -286,6 +314,103 @@ class Ticket
     {
         return $this->subject;
     }
+
+
+ 	/**
+     * Set summary
+     *
+     * @param string $summary
+     *
+     * @return Ticket
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * Get summary
+     *
+     * @return string
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+	 /**
+      * Set stepsToReproduce
+      *
+      * @param string $stepsToReproduce
+      *
+      * @return Ticket
+      */
+     public function setStepsToReproduce($stepsToReproduce)
+     {
+         $this->stepsToReproduce = $stepsToReproduce;
+
+         return $this;
+     }
+
+     /**
+      * Get stepsToReproduce
+      *
+      * @return string
+      */
+     public function getStepsToReproduce()
+     {
+         return $this->stepsToReproduce;
+     }
+
+	  /**
+       * Set expectedResults
+       *
+       * @param string $expectedResults
+       *
+       * @return Ticket
+       */
+      public function setExpectedResults($expectedResults)
+      {
+          $this->expectedResults = $expectedResults;
+
+          return $this;
+      }
+
+      /**
+       * Get expectedResults
+       *
+       * @return string
+       */
+      public function getExpectedResults()
+      {
+          return $this->expectedResults;
+      }
+
+		/**
+        * Set actualResults
+        *
+        * @param string $actualResults
+        *
+        * @return Ticket
+        */
+       public function setActualResults($actualResults)
+       {
+           $this->actualResults = $actualResults;
+
+           return $this;
+       }
+
+       /**
+        * Get actualResults
+        *
+        * @return string
+        */
+       public function getActualResults()
+       {
+           return $this->actualResults;
+       }
 
     /**
      * Set referenceIds
@@ -873,4 +998,3 @@ class Ticket
         return $this->formatedCreatedAt;
     }
 }
-

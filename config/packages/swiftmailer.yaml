@@ -1,4 +1,15 @@
 swiftmailer:
-    # url: '%env(MAILER_URL)%'
-    # spool: { type: 'memory' }
+    default_mailer: mailer_6053
+    mailers:
+        mailer_6053:
+            transport: smtp
+            username: trioticketingsystem@gmail.com
+            password: 1~Z0B=Uv
+            host: smtp.gmail.com 
+            port: 587
+            encryption: ssl
+            auth_mode: login
+            sender_address: 
+            delivery_addresses: ['']
+            disable_delivery: false
 

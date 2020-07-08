@@ -127,6 +127,6 @@ class __TwigTemplate_e4d5b60df6f356c9eeac976b4cd73705f40628344407b2772c090a37d9b
     </div>
 \t</div>
 </div>
-", "@UVDeskSupportCenter/Templates/footer.html.twig", "/Applications/MAMP/htdocs/ticketingsystem/vendor/uvdesk/support-center-bundle/Resources/views/Templates/footer.html.twig");
+", "@UVDeskSupportCenter/Templates/footer.html.twig", "/Applications/MAMP/htdocs/trioticketingsystem/vendor/uvdesk/support-center-bundle/Resources/views/Templates/footer.html.twig");
     }
 }

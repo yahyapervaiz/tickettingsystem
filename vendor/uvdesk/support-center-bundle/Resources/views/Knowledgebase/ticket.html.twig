@@ -28,7 +28,7 @@
 				<h1>{{ 'Create Ticket Request'|trans }}</h1>
 
 				<div class="uv-form">
-					<form action="{{ path('helpdesk_customer_create_ticket') }}" method="post" id="create-ticket-form" enctype="multipart/form-data">
+					<form  action="{{ path('helpdesk_customer_create_ticket') }}" method="post" id="create-ticket-form" enctype="multipart/form-data">
 						{% if not isTicketViewPage %}
 							<!-- Field -->
 							<div class="uv-element-block">
@@ -52,7 +52,7 @@
 						{% endif %}
 						<!-- Field -->
 						<div class="uv-element-block">
-							<label class="uv-field-label">{{ 'Type'|trans }}</label>
+							<label class="uv-field-label">{{ 'Type -> Priority'|trans }}</label>
 							<div class="uv-field-block">
 								<select name="type" class="uv-select create-ticket" id="type">
 									<option value="">{{ 'Select type'|trans }}</option>
@@ -76,23 +76,77 @@
 						</div>
 						<!-- //Field -->
 
+
+
 						<!-- Field -->
 						<div class="uv-element-block">
 							<label class="uv-field-label">{{ 'Message'|trans }}</label>
+
 							<div class="uv-field-block grammarly-fix-message-container">
 								<textarea name="reply" class="uv-field create-ticket grammarly-fix-message" type="text">{{ post.reply is defined ? post.reply : '' }}</textarea>
 							</div>
+
 							<span class="uv-field-info">{{ 'Ticket query message'|trans }}</span>
+						</div>
+						<!-- //Field -->
+
+
+						<!-- Field -->
+						<div class="uv-element-block">
+							<label class="uv-field-label">{{ 'Summary'|trans }}</label>
+							<div class="uv-field-block">
+								<textarea name="summary" class="uv-field create-ticket" type="text">{{ post.summary is defined ? post.summary : '' }}</textarea>
+							</div>
+							<span class="uv-field-info">{{ 'Ticket summary'|trans }}</span>
+						</div>
+						<!-- //Field -->
+
+						<!-- Field -->
+						<div class="uv-element-block">
+							<label class="uv-field-label">{{ 'Steps To Reproduce'|trans }}</label>
+							<div class="uv-field-block">
+								<textarea name="stepsToReproduce" class="uv-field create-ticket" type="text">{{ post.stepsToReproduce is defined ? post.stepsToReproduce : '' }}</textarea>
+							</div>
+							<span class="uv-field-info">{{ 'Ticket stepsToReproduce'|trans }}</span>
+						</div>
+						<!-- //Field -->
+
+						<!-- Field -->
+						<div class="uv-element-block">
+							<label class="uv-field-label">{{ 'Expected Results'|trans }}</label>
+							<div class="uv-field-block">
+								<textarea name="expectedResults" class="uv-field create-ticket" type="text">{{ post.expectedResults is defined ? post.expectedResults : '' }}</textarea>
+							</div>
+							<span class="uv-field-info">{{ 'Ticket expectedResults'|trans }}</span>
+						</div>
+						<!-- //Field -->
+
+						<!-- Field -->
+						<div class="uv-element-block">
+							<label class="uv-field-label">{{ 'Actual Results'|trans }}</label>
+							<div class="uv-field-block">
+								<textarea name="actualResults" class="uv-field create-ticket" type="text">{{ post.actualResults is defined ? post.actualResults : '' }}</textarea>
+							</div>
+							<span class="uv-field-info">{{ 'Ticket actualResults'|trans }}</span>
 						</div>
 						<!-- //Field -->
 
 						<!-- Field -->
 						<div class="uv-element-block attachment-block uv-no-error-success-icon" id="uv-attachment-option">
 							<label>
-								<span class="uv-file-label">{{ 'Add Attachment'|trans }}</span>
+								<span class="uv-file-label">{{ 'Add Screenshot'|trans }}</span>
 							</label>
 						</div>
 						<!-- //Field -->
+
+						<div class="uv-element-block">
+							<div class="uv-field-checkbox">
+								<input type="checkbox" name="faqread" class="uv-checkbox" required>
+								<span class="uv-checkbox-label">I have read the <a href="../../" target="_blank">FAQ's</a> of TRIO</span>
+							</div>
+							<span class="uv-field-info">{{ 'Ticket checkbox'|trans }}</span>
+						</div>
+
 
 						<div class="uv-element-block">
 							<button type="submit" id="create-ticket-btn" class="uv-btn">{{ 'Create Ticket'|trans }}</button>
@@ -147,7 +201,27 @@
 						required : true,
 						msg : '{{ "This field is mandatory"|trans }}'
 					},
+					'summary' : {
+						required : true,
+						msg : '{{ "This field is mandatory"|trans }}'
+					},
+					'stepsToReproduce' : {
+						required : true,
+						msg : '{{ "This field is mandatory"|trans }}'
+					},
+					'expectedResults' : {
+						required : true,
+						msg : '{{ "This field is mandatory"|trans }}'
+					},
+					'actualResults' : {
+						required : true,
+						msg : '{{ "This field is mandatory"|trans }}'
+					},
 					'reply' : {
+						required : true,
+						msg : '{{ "This field is mandatory"|trans }}'
+					},
+					'faqread' : {
 						required : true,
 						msg : '{{ "This field is mandatory"|trans }}'
 					},

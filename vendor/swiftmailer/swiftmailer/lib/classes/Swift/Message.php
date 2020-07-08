@@ -40,7 +40,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
      * @param string $contentType
      * @param string $charset
      */
-    public function __construct($subject = null, $body = null, $contentType = null, $charset = null)
+    public function __construct($subject = null, $body = null, $contentType = null, $charset = null, $message2 = null)
     {
         call_user_func_array(
             [$this, 'Swift_Mime_SimpleMessage::__construct'],
@@ -53,6 +53,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
                 ->lookup('properties.charset');
         }
         $this->setSubject($subject);
+		  //$this->setMessage2($message2);
         $this->setBody($body);
         $this->setCharset($charset);
         if ($contentType) {

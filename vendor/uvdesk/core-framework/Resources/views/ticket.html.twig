@@ -758,6 +758,17 @@
                                             {{ initialThread.message|raw }}
                                         {% endif %}
                                     </p>
+												<p><strong>Summary:</strong></p>
+												<p>{{ ticket.summary }}</p>
+
+												<p><strong>Steps To Reproduce:</strong></p>
+												<p>{{ ticket.stepsToReproduce }}</p>
+
+												<p><strong>Expected Results:</strong></p>
+												<p>{{ ticket.expectedResults }}</p>
+
+												<p><strong>Actual Results:</strong></p>
+												<p>{{ ticket.actualResults }}</p>
                                 </div>
 
                                 {# Ticket Attachments #}

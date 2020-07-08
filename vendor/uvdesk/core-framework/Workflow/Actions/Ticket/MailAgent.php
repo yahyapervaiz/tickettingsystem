@@ -63,7 +63,7 @@ class MailAgent extends WorkflowAction
         if ($entity instanceof Ticket) {
             $emailTemplate = $entityManager->getRepository('UVDeskCoreFrameworkBundle:EmailTemplates')->findOneById($value['value']);
             $emails = self::getAgentMails($value['for'], (($ticketAgent = $entity->getAgent()) ? $ticketAgent->getEmail() : ''), $container);
-            
+
             if ($emails && $emailTemplate) {
                 $queryBuilder = $entityManager->createQueryBuilder()
                     ->select('th.messageId as messageId')
@@ -71,7 +71,7 @@ class MailAgent extends WorkflowAction
                     ->where('th.createdBy = :userType')->setParameter('userType', 'agent')
                     ->orderBy('th.id', 'DESC')
                     ->setMaxResults(1);
-                
+
                 $inReplyTo = $queryBuilder->getQuery()->getSingleResult();
 
                 if (!empty($inReplyTo)) {
@@ -85,7 +85,7 @@ class MailAgent extends WorkflowAction
                 // Only process attachments if required in the message body
                 // @TODO: Revist -> Maybe we should always include attachments if they are provided??
                 if (!empty($entity->createdThread) && strpos($emailTemplate->getMessage(), '{%ticket.attachments%}') !== false || strpos($emailTemplate->getMessage(), '{% ticket.attachments %}') !== false) {
-                    $attachments = array_map(function($attachment) use ($container) { 
+                    $attachments = array_map(function($attachment) use ($container) {
                         return [
                             'name' => $attachment['name'],
                             'path' => str_replace('//', '/', $container->get('kernel')->getProjectDir() . "/public" . $attachment['relativePath']),
@@ -96,7 +96,7 @@ class MailAgent extends WorkflowAction
                 $placeHolderValues = $container->get('email.service')->getTicketPlaceholderValues($entity, 'agent');
                 $subject = $container->get('email.service')->processEmailSubject($emailTemplate->getSubject(), $placeHolderValues);
                 $message = $container->get('email.service')->processEmailContent($emailTemplate->getMessage(), $placeHolderValues);
-                
+
                 foreach ($emails as $email) {
                     $messageId = $container->get('email.service')->sendMail($subject, $message, $email, $emailHeaders, null, $attachments ?? []);
                 }
@@ -104,7 +104,7 @@ class MailAgent extends WorkflowAction
                 // Email Template/Emails Not Found. Disable Workflow/Prepared Response
                 // $this->disableEvent($event, $entity);
             }
-        } 
+        }
     }
 
     public static function getAgentMails($for, $currentEmails, $container)
@@ -135,7 +135,7 @@ class MailAgent extends WorkflowAction
                     ->andwhere("u.id = :userId")
                     ->setParameter('userId', $agent)
                     ->getQuery()->getResult();
-                
+
                 if (isset($email[0]['email'])) {
                     $agentMails[] = $email[0]['email'];
                 }
